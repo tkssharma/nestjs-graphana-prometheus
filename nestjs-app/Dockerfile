@@ -21,4 +21,4 @@ USER node
 
 ENV TYPEORM_MIGRATION=ENABLE
 ENV NPM_INSTALL=ENABLE
-CMD npm run start:dev
+CMD npm run start:debug

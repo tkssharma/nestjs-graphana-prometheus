@@ -1,7 +1,8 @@
 # compiled output
 /dist
 /node_modules
-
+build
+dist
 # Logs
 logs
 *.log

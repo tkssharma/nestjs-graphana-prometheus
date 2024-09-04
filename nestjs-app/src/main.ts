@@ -10,12 +10,6 @@ import { HttpExceptionFilter } from '@core/interceptor/app.interceptor';
 import { createDocument } from './swagger/swagger';
 import { RestaurantService } from '@domain/restaurant/services/restaurant.service';
 const LISTEN_PORT = 3000;
-if (
-  process.env.NODE_ENV === 'production' ||
-  process.env.NODE_ENV === 'development'
-) {
-  require('newrelic');
-}
 const NEST_LOGGING = true;
 async function bootstrap() {
   const opts: NestApplicationOptions = {};
@@ -23,6 +17,7 @@ async function bootstrap() {
     opts.logger = false;
   }
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
 
   app.enableCors({
     exposedHeaders: 'X-Document-Name',

@@ -3,9 +3,10 @@ import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { NextFunction, Response } from 'express';
 import AuthService from './auth-service';
 
+
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  constructor(private authorizationService: AuthService) {}
+  constructor(private authorizationService: AuthService) { }
 
   public async use(req: any, _: Response, next: NextFunction) {
     const { authorization } = req.headers;

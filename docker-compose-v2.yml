@@ -1,4 +1,7 @@
 version: '3.8'
+networks:
+  monitoring:
+    driver: bridge
 volumes:
   prometheus-data:
     driver: local
@@ -15,7 +18,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     volumes:
       - ./prometheus/config.yaml:/etc/prometheus/prometheus.yaml:ro
-      - ./data:/prometheus
+      - ./prometheus-data:/prometheus
     restart: unless-stopped
   grafana:
     image: grafana/grafana-oss:latest
@@ -30,12 +33,10 @@ services:
     container_name: nestjs-app
     command: npm run start:debug
     environment:
-      NPM_INSTALL: ENABLE
+      NPM_INSTALL: DISABLE
       TYPEORM_MIGRATION: ENABLE
     ports:
       - 3010:3000
-    volumes:
-      - ./nestjs-app:/app
   postgres:
     image: postgres
     environment:
@@ -46,4 +47,4 @@ services:
       - ./docker-utils:/docker-entrypoint-initdb.d
       - db_data:/data/postgres
     ports:
-      - 5439:5432    
+      - 5439:5432     

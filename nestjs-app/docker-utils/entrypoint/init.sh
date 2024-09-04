@@ -18,7 +18,6 @@ then
   if [ "$NPM_INSTALL" = "ENABLE" ]
   then
     echo "+Running npm install - disable with .env entry NPM_INSTALL=DISABLE"
-    npm install
     npm run build
   else
     echo "+Skipping npm install - enable with .env entry NPM_INSTALL=ENABLE"
